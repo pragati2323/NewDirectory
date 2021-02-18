@@ -1,0 +1,5 @@
+assert cloned_repo.active_branch != new_branch                # which wasn't checked out yet ...
+self.assertEqual(new_branch.commit, cloned_repo.active_branch.commit)  # pointing to the checked-out commit
+# It's easy to let a branch point to the previous commit, without affecting anything else
+# Each reference provides access to the git object it points to, usually commits
+assert new_branch.set_commit('HEAD~1').commit == cloned_repo.active_branch.commit.parents[0]
